@@ -28,3 +28,6 @@ test/support/tmp/*
 # Extra files
 yarn.lock
 npm-debug.log
+
+# Build
+lib

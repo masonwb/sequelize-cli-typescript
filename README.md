@@ -1,12 +1,6 @@
 # Fork
 
-This repository was forked to allow having a compiled folder for migrations and seeders.
-
-By setting up local scripts you are able to compile `.ts` -> `.js` migrations within your Sequelize's configuration folders and run them as usual.
-
-I have extended this functionallity to allow migrating typescript in runtime - meaning you are not required to compile `.ts` down to `.js` anymore. Run your migrations as usual.
-
-Be sure that your Sequelize compiled path for migrations and seeders point to a correct location.
+This repository was forked to allow executing typescript migrations and seeders during runtime without the need for compilation.
 
 # sequelize/cli [![npm version](https://badge.fury.io/js/sequelize-cli.svg)](https://badge.fury.io/js/sequelize-cli) [![Build Status](https://travis-ci.org/sequelize/cli.svg?branch=master)](https://travis-ci.org/sequelize/cli) [![Greenkeeper badge](https://badges.greenkeeper.io/sequelize/cli.svg)](https://greenkeeper.io/)
 
@@ -42,26 +36,18 @@ $ npm install --save sequelize-cli-typescript
 You should be able to run CLI with
 
 ```bash
-$ node_modules/.bin/sequelize
+$ npx sequelize
 ```
 
 ### Differences from Sequelize-Cli _(non-TypeScript)_
 
-With sequelize-cli, the ```model:generate``` command would produce _JavaScript_ files in two folders: 
-/models and /migrations, or other folders as specified in your .sequelizerc file.  The ```db:migrate``` 
-command would then exe ute these _JavaScript_ files to update your database.
+With sequelize-cli, the ```model:generate``` command would produce _JavaScript_ files in two folders:
+/models and /migrations, or other folders as specified in your .sequelizerc file.  The ```db:migrate```
+command would then execute these _JavaScript_ files to update your database.
 
 With sequelize-cli-typescript, ```model:generate``` produces _TypeScript_ files in the same two folders
-(or again, as specified in your .sequelizerc file).  But before you can run ```db:migrate``` you must
-compile your migrations.  (The step of compiling your migrations is left to you.)
-
-You could compile your migrations along with your other code, or as part of a separate script.  After you have compiled
-your migrations, then you can run ```db:migrate```.
-
-It's usually the case that the compiled _JavaScript_ code will be put in a different directory than
-the source _TypeScript_ code, so whereas sequelize-cli had one ```migrations-path``` setting, 
-sequelize-cli-typescript has two: ```migrations-source-path``` and ```migrations-compiled-path```, which
-default to /migrations and /migrations/compiled respectively.
+(or again, as specified in your .sequelizerc file).  The ```db:migrate```
+command would then execute these _TypeScript_ files to update your database.
 
 
 ### Usage
@@ -69,10 +55,10 @@ default to /migrations and /migrations/compiled respectively.
 Sequelize CLI [Node: 6.11.2, CLI: 3.0.0, ORM: 4.8.0]
 
 Commands:
-  db:migrate                        Run pending migrations
+  db:migrate                        Run pending migrations                      [aliases: db:migrate:up]
   db:migrate:schema:timestamps:add  Update migration table to have timestamps
   db:migrate:status                 List the status of all migrations
-  db:migrate:undo                   Reverts a migration
+  db:migrate:undo                   Reverts a migration                         [aliases: db:migrate:down]
   db:migrate:undo:all               Revert all migrations ran
   db:seed                           Run specified seeder
   db:seed:undo                      Deletes data from the database
@@ -85,13 +71,13 @@ Commands:
   init:migrations                   Initializes migrations
   init:models                       Initializes models
   init:seeders                      Initializes seeders
-  migration:generate                Generates a new migration file       [aliases: migration:create]
-  model:generate                    Generates a model and its migration  [aliases: model:create]
-  seed:generate                     Generates a new seed file            [aliases: seed:create]
+  migration:generate                Generates a new migration file              [aliases: migration:create]
+  model:generate                    Generates a model and its migration         [aliases: model:create]
+  seed:generate                     Generates a new seed file                   [aliases: seed:create]
 
 Options:
-  --version  Show version number                                         [boolean]
-  --help     Show help                                                   [boolean]
+  --version  Show version number                                                [boolean]
+  --help     Show help                                                          [boolean]
 ```
 
 ## Contributing

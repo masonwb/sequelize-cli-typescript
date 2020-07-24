@@ -3,7 +3,7 @@
   "version": "5.1.3",
   "description": "The Sequelize CLI (TypeScript)",
   "bin": {
-    "sequelize": "./lib/sequelize"
+    "sequelize": "./lib/sequelize.js"
   },
   "dependencies": {
     "bluebird": "^3.5.3",
@@ -12,7 +12,8 @@
     "js-beautify": "^1.8.8",
     "lodash": "^4.17.5",
     "resolve": "^1.5.0",
-    "umzug": "https://github.com/wildcookie007/umzug",
+    "ts-node": "^8.10.2",
+    "umzug": "^2.3.0",
     "yargs": "^12.0.5"
   },
   "devDependencies": {
@@ -41,17 +42,16 @@
     "src/assets"
   ],
   "scripts": {
-    "build": "npm run build-clean && babel src -d lib && npm run build-bin && npm run build-assets",
-    "build-bin": "mv ./lib/sequelize.js ./lib/sequelize && chmod +x ./lib/sequelize",
+    "preinstall": "npm install --ignore-scripts && npm run build",
+    "build": "babel src -d lib && npm run build-assets",
     "build-assets": "cp -R ./src/assets ./lib/",
-    "build-clean": "rm -rf ./lib/",
     "lint": "eslint test src",
     "test-raw": "mocha $npm_package_options_mocha 'test/**/*.test.js'",
     "test": "npm run lint && npm run build && npm run test-raw"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/wildcookie007/sequelize-cli-typescript.git"
+    "url": "git://github.com/masonwb/sequelize-cli-typescript.git"
   },
   "keywords": [
     "sequelize",
@@ -59,6 +59,10 @@
     "typescript"
   ],
   "contributors": [
+    {
+      "name": "Mason Buchanan",
+      "email": "masonwb@gmail.com"
+    },
     {
       "name": "Sascha Depold",
       "email": "sascha@depold.com"

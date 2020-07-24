@@ -26,8 +26,6 @@ function createFolder (folderName, folder, force) {
     if (fs.existsSync(folder) === false) {
       helpers.asset.mkdirp(folder);
       helpers.view.log('Successfully created ' + folderName + ' folder at "' + folder + '".');
-    } else {
-      helpers.view.log(folderName + ' folder at "' + folder + '" already exists.');
     }
   } catch (e) {
     helpers.view.error(e);

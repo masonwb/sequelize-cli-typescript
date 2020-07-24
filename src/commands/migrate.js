@@ -23,6 +23,7 @@ exports.handler = async function (args) {
 
   switch (command) {
     case 'db:migrate':
+    case 'db:migrate:up':
       await migrate(args);
       break;
     case 'db:migrate:schema:timestamps:add':

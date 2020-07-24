@@ -43,11 +43,11 @@ export function getMigrator (type, args) {
     let migratorPath = helpers.path.getPath(type);
 
     if ( type === 'migration' ) {
-      migratorPath = helpers.path.getMigrationsCompiledPath();
+      migratorPath = helpers.path.getMigrationsSourcePath();
     }
 
     if ( type === 'seeder' ) {
-      migratorPath = helpers.path.getSeedersCompiledPath();
+      migratorPath = helpers.path.getSeedersSourcePath();
     }
 
     const sequelize = getSequelizeInstance();
@@ -59,6 +59,7 @@ export function getMigrator (type, args) {
         params: [sequelize.getQueryInterface(), Sequelize],
         path: migratorPath,
         pattern: /\.[jt]s$/,
+        customResolver: require('ts-node/register'),
         wrap: fun => {
           if (fun.length === 3) {
             return Bluebird.promisify(fun);

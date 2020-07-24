@@ -21,7 +21,7 @@ exports.handler = function (args) {
 
   fs.writeFileSync(
     helpers.path.getMigrationSourcePath(args.name),
-    helpers.template.render('migrations/skeleton.ts', {}, {
+    helpers.template.render('migrations/skeleton.ts', {name: args.name}, {
       beautify: false
     })
   );

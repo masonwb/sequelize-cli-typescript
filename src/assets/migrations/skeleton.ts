@@ -1,11 +1,13 @@
-import { QueryInterface, SequelizeStatic } from 'sequelize';
+import { QueryInterface, DataTypes } from 'sequelize';
 
 export = {
-	up: (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
+  name: '<%= name %>',
 
-	},
+  up: async (queryInterface: QueryInterface) => {
 
-	down: (queryInterface: QueryInterface, Sequelize: SequelizeStatic) => {
+  },
 
-	}
+  down: async (queryInterface: QueryInterface) => {
+
+  },
 };
